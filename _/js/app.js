@@ -53,40 +53,37 @@ $(function () {
 	positions.shift();
 
 	// Shuffle Puzzle Pieces
-
 	$("#start").on("click", function (e) {
 		var pieces = imgContainer.children();
 		function shuffle(array) {
 			var i = array.length;
 			if (i === 0) {
-			return false;
-		}
+				return false;
+			} //if
 		while (--i) {
 			var j = Math.floor(Math.random() * (i + 1)),
 				tempi = array[i],
 				tempj = array[j];
 				array[i] = tempj;
 				array[j] = tempi;
-			}
-		}
+			} //while
+		} //shuffle(array)
 
 		shuffle(pieces);
 		
 		$.each(pieces, function (i) {
 			pieces.eq(i).css(positions[i]);
 		});
-		
+		// Swap original pieces with shuffled pieces
 		pieces.appendTo(imgContainer);
 		
 		empty.top = 0;
 		empty.left = 0;
 		
 		container.find("#ui").find("p").not("#time").remove();
-	}); // Start onClick
 
-	// Check if timer is running
-
-	pieces.appendTo(imgContainer).draggable("destroy");
+		// Check if timer is running
+	//pieces.appendTo(imgContainer).draggable("destroy");
 		if (timer) {
 			clearInterval(timer);
 			timerDisplay.text("00:00:00");
@@ -205,6 +202,13 @@ $(function () {
 			} // if (correctPieces)
 		} //stop
 	}); //Draggable
+
+
+	}); // Start onClick
+
+	
+
+	
 
 	function getPosition(el) {
 		return {
